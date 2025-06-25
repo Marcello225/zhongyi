@@ -575,31 +575,6 @@
             30% { transform: scale(1.3); opacity: 1; }
         }
 
-        /* API密钥输入 */
-        .api-key-container {
-            padding: 15px;
-            background: #385408;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .api-key-input {
-            display: flex;
-            margin-top: 10px;
-        }
-
-        .api-key-input input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #e1e8d9;
-            border-radius: 8px 0 0 8px;
-        }
-
-        .api-key-input button {
-            padding: 10px 15px;
-            border-radius: 0 8px 8px 0;
-        }
-
         /* 响应式设计 */
         @media (max-width: 1024px) {
             .sidebar {
@@ -705,14 +680,6 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-        </div>
-    </div>
-
-    <div class="api-key-container">
-        <p><i class="fas fa-key"></i> 设置您的API密钥</p>
-        <div class="api-key-input">
-            <input type="password" id="apiKeyInput" placeholder="输入API密钥">
-            <button id="saveApiKeyBtn">保存</button>
         </div>
     </div>
 </div>
@@ -830,23 +797,9 @@
     const submitBtn = document.getElementById('submitBtn');
     const exampleQuestions = document.querySelectorAll('.question');
     const chatContainer = document.getElementById('chatContainer');
-    const apiKeyInput = document.getElementById('apiKeyInput');
-    const saveApiKeyBtn = document.getElementById('saveApiKeyBtn');
 
-    // 存储API密钥
-    let apiKey = localStorage.getItem('deepseekApiKey') || '';
-    apiKeyInput.value = apiKey;
-
-    // 保存API密钥
-    saveApiKeyBtn.addEventListener('click', () => {
-        apiKey = apiKeyInput.value.trim();
-        if (apiKey) {
-            localStorage.setItem('deepseekApiKey', apiKey);
-            alert('API密钥已保存！');
-        } else {
-            alert('请输入有效的API密钥');
-        }
-    });
+    // 固定的API密钥
+    const apiKey = "sk-1757fd6f8c6c4414839f697494351f4c";
 
     // 移动端菜单切换
     menuToggle.addEventListener('click', () => {
@@ -999,11 +952,6 @@
             return;
         }
 
-        if (!apiKey) {
-            alert('请先在侧边栏设置您的API密钥');
-            return;
-        }
-
         // 添加用户消息
         addMessageToChat(question, 'user');
 
@@ -1016,7 +964,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer sk-1757fd6f8c6c4414839f697494351f4c`
+                    'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
                     model: "deepseek-chat",
