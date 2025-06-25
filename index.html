@@ -578,7 +578,7 @@
         /* API密钥输入 */
         .api-key-container {
             padding: 15px;
-            background: #f8fbf3;
+            background: #385408;
             border-radius: 10px;
             margin-top: 20px;
         }
@@ -711,7 +711,7 @@
     <div class="api-key-container">
         <p><i class="fas fa-key"></i> 设置您的API密钥</p>
         <div class="api-key-input">
-            <input type="password" id="apiKeyInput" placeholder="输入DeepSeek API密钥">
+            <input type="password" id="apiKeyInput" placeholder="输入API密钥">
             <button id="saveApiKeyBtn">保存</button>
         </div>
     </div>
@@ -1016,7 +1016,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`
+                    'Authorization': `Bearer sk-1757fd6f8c6c4414839f697494351f4c`
                 },
                 body: JSON.stringify({
                     model: "deepseek-chat",
